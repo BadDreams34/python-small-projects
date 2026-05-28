@@ -12,6 +12,7 @@ except ImportError:
 WIDTH, HEIGHT = bext.size()
 NUMER_OF_LOGOS = 10
 PAUSE = 0.1
+WIDTH -=1 #bext can't print on last column without adding a newline automatically
 
 colors = ['red','green','yellow','blue','magenta','cyan']
 UP_RIGHT = 'ur'
@@ -50,39 +51,39 @@ def main():
             if logo[X] == 0 and logo[Y]==0:
                 corner_bounces += 1
                 logo[DIR] = DOWN_RIGHT
-            if logo[X] == WIDTH - 3 and logo[Y] == HEIGHT - 1:
+            elif logo[X] == WIDTH - 3 and logo[Y] == HEIGHT - 1:
                 corner_bounces += 1
                 logo[DIR] = UP_LEFT
-            if logo[X] == WIDTH - 3 and logo[Y] == 0:
+            elif logo[X] == WIDTH - 3 and logo[Y] == 0:
                 corner_bounces += 1
                 logo[DIR] = DOWN_LEFT
-            if logo[X] == 0 and logo[Y] == HEIGHT - 1:
+            elif logo[X] == 0 and logo[Y] == HEIGHT - 1:
                 corner_bounces += 1
                 logo[DIR] = UP_RIGHT
 
             #checking of right Edge
             # WIDTH-3 since DVD has three symbols
-            if logo[X] == WIDTH - 3 and logo[DIR] == UP_RIGHT:
+            elif logo[X] == WIDTH - 3 and logo[DIR] == UP_RIGHT:
                 logo[DIR] = UP_LEFT
-            if logo[X] == WIDTH - 3 and logo[DIR] == DOWN_RIGHT:
+            elif logo[X] == WIDTH - 3 and logo[DIR] == DOWN_RIGHT:
                 logo[DIR] = DOWN_LEFT
 
             #checking of left Edge
-            if logo[X] == 0 and logo[DIR] == UP_LEFT:
+            elif logo[X] == 0 and logo[DIR] == UP_LEFT:
                 logo[DIR] = UP_RIGHT
-            if logo[X] == 0 and logo[DIR] == DOWN_LEFT:
+            elif logo[X] == 0 and logo[DIR] == DOWN_LEFT:
                 logo[DIR] = DOWN_RIGHT
 
             #checking of top edge
-            if logo[Y] == 0 and logo[DIR] == UP_RIGHT:
+            elif logo[Y] == 0 and logo[DIR] == UP_RIGHT:
                 logo[DIR] = DOWN_RIGHT
-            if logo[Y] == 0 and logo[DIR] == UP_LEFT:
+            elif logo[Y] == 0 and logo[DIR] == UP_LEFT:
                 logo[DIR] = DOWN_LEFT
 
             #checking of bottom edge
-            if logo[Y] == HEIGHT - 1 and logo[DIR] == DOWN_RIGHT:
+            elif logo[Y] == HEIGHT - 1 and logo[DIR] == DOWN_RIGHT:
                 logo[DIR] = UP_RIGHT
-            if logo[Y] == HEIGHT - 1 and logo[DIR] == DOWN_LEFT:
+            elif logo[Y] == HEIGHT - 1 and logo[DIR] == DOWN_LEFT:
                 logo[DIR] = UP_LEFT
 
             if logo[DIR] != original_direction:
@@ -107,14 +108,14 @@ def main():
             bext.goto(5,0)
             print("Corner bounces", corner_bounces, end="")
 
-            for logo in logos:
-                bext.goto(logo[X], logo[Y])
-                bext.fg(logo[COLOR])
-                print("DVD", end="")
-            bext.goto(0,0) # resets the position of cursor after every logo been drawn
+        for logo in logos:
+            bext.goto(logo[X], logo[Y])
+            bext.fg(logo[COLOR])
+            print("DVD", end="")
+        bext.goto(0,0) # resets the position of cursor after every logo been drawn
 
-            sys.stdout.flush()
-            time.sleep(PAUSE)
+        sys.stdout.flush()
+        time.sleep(PAUSE)
 
 
 if __name__ == "__main__":
