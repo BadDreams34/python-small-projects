@@ -38,6 +38,10 @@ def main():
                       DIR: random.choice(directions),
                       COLOR: random.choice(colors)})
 
+        if logos[-1][X] % 2 == 1:
+            logos[-1][X] -= 1
+
+
     corner_bounces = 0
     while True: #main game loop
         for logo in logos:
