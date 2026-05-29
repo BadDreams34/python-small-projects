@@ -36,19 +36,5 @@ def main():
 
         print(message)
         print("Decrypted message: {}".format(message.translate(decipher)))
-
-
-
-
-
-
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
