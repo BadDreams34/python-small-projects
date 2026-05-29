@@ -29,7 +29,16 @@ def main():
     if status == "d":
 
         #shifted string
-        shifted_lower =
+        shifted_lower = string.ascii_lowercase[-key:] + string.ascii_lowercase[:-key]
+        shifted_upper = string.ascii_uppercase[-key:] + string.ascii_uppercase[:-key]
+        decipher = str.maketrans(string.ascii_lowercase, shifted_lower)
+        decipher.update(str.maketrans(string.ascii_uppercase, shifted_upper))
+
+        print(message)
+        print("Decrypted message: {}".format(message.translate(decipher)))
+
+
+
 
 
 
