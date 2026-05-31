@@ -2,17 +2,7 @@
 This program generate a text file which shows monthly calendar of a given month and year
 as given the user."""
 
-# prints the given month and year
-# print the days from monday to sunday
-# printing dates
-#- calculate number of days in the month and from the previous month
-## calculate the day of the first date, and subtract index of the first day + 1 from 7 and then PREVIOUSMONTHS'last date - this num and then fill that number as the first number until the index and then start from 1
-## for week two AND three and four :after the last date add 7 more dates with a for loop
-## for week five : days = no. of days in the month - last day in week four and other days as from 1,2,3,...
-### we have days list in each week right now create a list WEEKS
-### for each week in WEEKS print days then \n
-
-#-- INSTEAD OF LIST USE STRINGS AND THUS add the given number
+# how to save it to a txt file?
 import datetime
 import calendar
 
@@ -49,17 +39,17 @@ def main():
     formated_date = given_date.strftime("%B, %Y")
 
     #prints the specifc month,year in the calendar top
-    space = 30 #gap before printing month, year on the top
+    space = 60 #gap before printing month, year on the top
     for i in range(space):
         print(" ", end="")
     print(formated_date)
 
     #print days
     days =  ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-    intendation = 4 #gap between the next day in calendar
+    intendation = 18 #gap between the next day in calendar
     days_line = "" #the line which will show the days in the calendar
     for i in range(len(days)):
-        days_line += intendation * "."
+        days_line += (intendation -5) * "."
         days_line += days[i]
     print(days_line)
 
@@ -71,43 +61,57 @@ def main():
         previous_week_day, num_previous_days = calendar.monthrange(year,month-1)
 
     #calculate the number of weeks in the given month
+    if first_week_day == 6:
+        first_week_day = 0
+    else:
+        first_week_day += 1
+
     num_previous_dates = first_week_day
-
-    num_weeks = int((num_previous_days + num_current_days) / 7)
-
+    num_weeks = (num_previous_dates + num_current_days) / 7
+    if num_weeks > int((num_previous_dates + num_current_days) / 7):
+        num_weeks =  int((num_previous_dates + num_current_days) / 7) +1
 
     weeks = [] #stores days in all weeks of the month
 
     #adds weeks in a month
-    for i in range(num_weeks):
-        for j in range(7):
-            if i==1:
+    for i in range(num_weeks): # for each week
+        weeks.append("")  # add an empty week
+        n = '01'
+        m = 1
+        for j in range(7): # for each day in the week
+            if i==0: #for the first week
                 weeks[i] += "|"
-                n = 1
                 if j < first_week_day:
                     weeks[i] += (num_previous_days - num_previous_dates) + j
                 else:
                     weeks[i] += n
-                weeks[i] += (intendation +6) * " "
+                weeks[i] += intendation * " "
+                m += 1
+                n = '0{}'.format(m)
             else:
-                last_week_date = i*7 + (7 - first_week_day)
+                last_week_date = (i-1)*7 + (8 - first_week_day)
                 weeks[i] += "|"
-                weeks[i] += last_week_date + i
-                weeks[i] += (intendation + 6) * " "
+                if last_week_date + j -1  >= num_current_days:
+                    weeks[i] += "  "
+                elif last_week_date + j -1 < 9:
+                    weeks[i] += "0{}".format(last_week_date + j)
+                else:
+                    weeks[i] += str(last_week_date + j) #add corresponding date to the string
+                weeks[i] += intendation * " "
         weeks[i] += "|"
     #blank string to be displayed
     blank_str = ""
     for i in range(7):
         blank_str += "|"
-        blank_str += (intendation + 6) * " "
-        blank_str +="|"
+        blank_str += (intendation + 2) * " "
+    blank_str += "|"
 
     #initial week string which appears on the top of each week string
     initial_week_str = ""
     for i in range(7):
         initial_week_str += "+"
-        initial_week_str += "."* (intendation+6)*2
-        initial_week_str += "+"
+        initial_week_str += "."* (intendation+2)
+
 
 
 
