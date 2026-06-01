@@ -54,7 +54,7 @@ def calender_generator():
         cal_text += week_sep
         num_line = ""  # number line in the calendar which contains dates
         for i in range(7):
-            num_line += "|" + f'{str(current_date.day):02}' + " "* 8
+            num_line += "|" + f'{current_date.day:02}' + " "* 8       num_line += "|" + f'{current_date.day:02}' + " "* 8
             current_date += datetime.timedelta(days=1)
         num_line += "|\n"
 

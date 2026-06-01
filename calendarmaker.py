@@ -85,7 +85,7 @@ def main():
                 if i==0: #for the first week
                     weeks[i] += "|"
                     if j < first_week_day:
-                        weeks[i] += (num_previous_days - num_previous_dates) + j
+                        weeks[i] += str((num_previous_days - num_previous_dates) + j)
                     else:
                         weeks[i] += n
                     weeks[i] += intendation * " "
@@ -114,9 +114,6 @@ def main():
         for i in range(7):
             initial_week_str += "+"
             initial_week_str += "."* (intendation+2)
-
-
-
 
         #print weeks
         for week in weeks:
