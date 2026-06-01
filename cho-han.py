@@ -14,6 +14,8 @@ The dealer takes some proportion of their win in every chance.
 The player can play it till whenever they wants to player or if they
 ran out of money.""")
 
+#constants
+POSSIBLE_OUTCOMES = ["cho","han"]
 #the total money the player have
 money = 5000
 while True: #main game loop
@@ -34,15 +36,14 @@ while True: #main game loop
 
     #Dealer rolls the dice and stores the result in outcome_dice
     print("Dealer rolls the double dices and hides the result from the user")
-    possible_outcomes = ["cho","han"]
-    outcome_dice = random.choice(possible_outcomes)
+    outcome_dice = random.choice(POSSIBLE_OUTCOMES)
 
     #asks the player for the choice and decide the result
     print("Please select cho or han")
     while True:
         choice_player = input("> ")
 
-        if not choice_player in possible_outcomes:
+        if choice_player not in POSSIBLE_OUTCOMES:
             print("Please enter the right choice, cho or han")
             continue
 
@@ -72,7 +73,7 @@ while True: #main game loop
             continue
         break
 
-    if play_again_status == "N":
+    if play_again_status.upper() == "N":
         print("Your current amount : {}".format(money))
         print("Thanks for playing")
         break
