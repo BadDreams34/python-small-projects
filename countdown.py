@@ -42,29 +42,21 @@ total_time = h * 3600 + m * 60 + s
 
 while True:
     os.system("cls")
-    hours = countdown_module_art.getSevSegStr(h, 2)
-    mins = countdown_module_art.getSevSegStr(m, 2)
-    secs = countdown_module_art.getSevSegStr(s, 2)
-    for rows in zip(hours.splitlines(), mins.splitlines(), secs.splitlines()):
-        print(" : ".join(rows),flush=True)
+    hr = total_time // 3600
+    min = (total_time % 3600) // 60
+    sec = total_time % 60
+
+    hours = countdown_module_art.getSevSegStr(hr, 2)
+    mins = countdown_module_art.getSevSegStr(min, 2)
+    secs = countdown_module_art.getSevSegStr(sec, 2)
+
+    top_hours , mid_hours , bottom_hours = hours.splitlines()
+    top_min_row, mid_min_row, bottom_min_row = mins.splitlines()
+    top_sec_row, mid_sec_row, bottom_sec_row = secs.splitlines()
+
+    #prints the clock in the terminal
+    print(f"{top_hours}  {top_min_row}  {top_sec_row}")
+    print(f"{mid_hours}* {mid_min_row}* {mid_sec_row}")
+    print(f"{bottom_hours}* {bottom_min_row}* {bottom_sec_row}")
     time.sleep(1)
-
-    if s > 0:
-        s -= 1
-    elif s == 0 and m > 0:
-        s = 59
-        m -= 1
-    elif s == 0 and m == 0 and h> 0:
-        h -= 1
-        m = 59
-        s = 59
-    elif s == 0 and m == 0 and h == 0:
-        sys.exit()
-
-
-
-
-
-
-
-
+    total_time -=1
