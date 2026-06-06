@@ -5,7 +5,7 @@ import random, sys, time
 
 #Set up the constants
 WIDTH = 50
-PAUSE_AMOUNT = 0.45
+PAUSE_AMOUNT = 0.05
 
 
 print("Deep Cave")
