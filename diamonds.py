@@ -23,11 +23,7 @@ def diamond_generator(siz,orientation):
     if orientation == 'up':
         size = siz
         gap_ind = 0
-
-
-
-        # firstly reduce the gap and like create a diamond and another one but this time
-
+        upper_half = []
         while True: #creation of one diamond by creating separate string for each new line
             diamonds = []
             final_diamond = []
@@ -35,9 +31,7 @@ def diamond_generator(siz,orientation):
             initial_space = size * " "
             gap = 2 * " " * gap_ind
             diamonds.append(list(f"{initial_space}/{gap}\\"))
-            # if all the lines are being stored
             if size == 0:
-                print(f"{initial_space}/{gap}\\")
                 break
 
             #check for additional diamonds with gap
@@ -60,25 +54,22 @@ def diamond_generator(siz,orientation):
                         break
                 if not element_added:
                     final_diamond.append(" ")
-            print("".join(final_diamond))
+            text_curr = "".join(final_diamond)
+            upper_half.append(text_curr)
+            upper_half.append('\n')
             gap_ind += 1
             size -= 1
+        upper_text = "".join(upper_half)
+        print(upper_text, end='')
+
+        mapping_lower = str.maketrans("/\\", "\\/")
+        reversed_lower = upper_text.translate(mapping_lower)
+
+        for line in reversed_lower.splitlines()[::-1]:
+            print(line)
 
 
 
-    # elif orientation == 'down':
-    #     size = 0
-    #     i = siz
-    #     dis = 0
-    #     distance = " " * dis
-    #     while True:
-    #         initial_space = distance + size * " "
-    #         gap = 2 * " " * i
-    #         print(f"{initial_space}\\{gap}/",flush=True)
-    #         if size == siz or i == 0:
-    #             break
-    #         size += 1
-    #         i -= 1
 
 
 main()
