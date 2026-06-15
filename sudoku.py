@@ -3,22 +3,12 @@ This program solves a given sodoku """
 
 
 
-sudoku = {
-            1: [" ", "2", "7", " ", "6", " ", "3", "4", " "],
-            2: [" ", " ", " ", "2", " ", "9", " ", " ", " "],
-            3: ["9", " ", " ", " ", "5", " ", " ", " ", "2"],
-            4: ["4", " ", " ", "8", "2", "3", " ", " ", "5"],
-            5: [" ", "5", " ", " ", "4", " ", " ", "6", " "],
-            6: ["3", "7", " ", " ", " ", " ", " ", "1", "4"],
-            7: [" ", " ", "1", " ", " ", " ", "5", " ", " "],
-            8: [" ", "3", "5", " ", " ", " ", "9", "7", " "],
-            9: [" ", " ", " ", " ", "7", " ", " ", " ", " "]
-        }
+sudoku = {}
 
 def main():
     filled_row = 0
     # asks for the user input
-    # sudoku = userinput()
+    userinput()
     while True: #until the sudoku is complete
         # check for winning condition
         #removes the filled row
@@ -59,30 +49,30 @@ def main():
 
 
 
-# def userinput():
-    # """ asks for the rows of sodoku and stores them in a dictionary """
-    # for i in range(9):
-    #     print(f"Please enter the numbers of Row {i+1} seperated by comma, use blank space if there is no value for the given place")
-    #
-    #     while True:
-    #         row = input("> ")
-    #         row_given = row.split(",")
-    #         if len(row_given) != 9:
-    #             print("Please check your input there must be 9 values")
-    #             continue
-    #         valid_inp = True
-    #         for item in row_given:
-    #             if item not in ["", " "] and not 0 <= int(item) <= 9 :
-    #                 print("Item must be integer or a blank space")
-    #                 valid_inp = False
-    #                 break
-    #         nums = [item for item in row_given if item not in ["", " "]]
-    #         if len(set(nums)) != len(nums):
-    #             print("Duplication present")
-    #             continue
-    #         if valid_inp:
-    #             sudoku[i+1] = row_given
-    #             break
+def userinput(sudoku):
+    """ asks for the rows of sodoku and stores them in a dictionary """
+    for i in range(9):
+        print(f"Please enter the numbers of Row {i+1} seperated by comma, use blank space if there is no value for the given place")
+
+        while True:
+            row = input("> ")
+            row_given = row.split(",")
+            if len(row_given) != 9:
+                print("Please check your input there must be 9 values")
+                continue
+            valid_inp = True
+            for item in row_given:
+                if item not in ["", " "] and not 0 <= int(item) <= 9 :
+                    print("Item must be integer or a blank space")
+                    valid_inp = False
+                    break
+            nums = [item for item in row_given if item not in ["", " "]]
+            if len(set(nums)) != len(nums):
+                print("Duplication present")
+                continue
+            if valid_inp:
+                sudoku[i+1] = row_given
+                break
 
 
 

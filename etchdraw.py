@@ -20,18 +20,6 @@ DOWN_LEFT_RIGHT_CHAR = chr(9516)  # Character 9516 is '┬'
 UP_LEFT_RIGHT_CHAR   = chr(9524)  # Character 9524 is '┴'
 CROSS_CHAR           = chr(9532)  # Character 9532 is '┼'
 
-# i will ask w a s d if w then i will do what ? i need a canvas dictionary # WRONG APPROACH TO THINK thinkk of irl first without pytho
-# wasd to move if w then draw one up if a thne at that position draw one left same for s and d
-# it should be within the canvas i.e. if it exceeded the length that key should do nothing
-# also it should handle the other respective keywords as well
-# it should save the given canvas in a file if pressed s
-
-# now how will you draw a canvas say the hash is # is my curr x, curr y coordinate
-# WASD will change my hash as well as draw a line
-# how will i store where the hash is ? by curr x and curr y
-# how will i store where the lines are ? we will have a dictionary of rows and columns perhaps tuples with each value storing
-# the current char which it will get pushed by curr x and curr y due to move ment of w a s d
-
 
 
 def main(): #main function
@@ -194,8 +182,6 @@ def draw_line(keys,curr_pos ,board):
 
 
 
-
-
 def print_board(curr_pos,board):
     '''prints the given characters as per x and y values on the screen '''
     for y in range(HEIGHT):
@@ -206,6 +192,7 @@ def print_board(curr_pos,board):
                 print(board.get((x,y), " "), end='')
         print()
 
+
 def save_file(board):
     save_text = []
     for y in range(HEIGHT):
@@ -214,12 +201,10 @@ def save_file(board):
         save_text.append("\n")
     return "".join(save_text)
 
+
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
         print("Program Ended")
         sys.exit()
-
-        # you need to check if the value at the given position as well and if there is already a value at that position and if
-        # it is upside down then add cross hair there
