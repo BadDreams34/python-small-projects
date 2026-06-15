@@ -123,63 +123,76 @@ def draw_line(keys,curr_pos ,board):
 
 
     print(f"X: {x}, Y : {y}")
-    if curr_key == "W":
-        curr_pos[Y] -= 1
-        if prev_key is None:
-            board[(x, y)] = UP_DOWN_CHAR
-        elif prev_key == "W":
-            board[(x, y)] = UP_DOWN_CHAR
-        elif prev_key == "A":
-            board[(x, y)] = UP_RIGHT_CHAR
+    if (x,y) not in board.keys():
+        if curr_key == "W":
+            curr_pos[Y] -= 1
+            if prev_key is None:
+                board[(x, y)] = UP_DOWN_CHAR
+            elif prev_key == "W":
+                board[(x, y)] = UP_DOWN_CHAR
+            elif prev_key == "A":
+                board[(x, y)] = UP_RIGHT_CHAR
 
-        elif prev_key == "S":
-            pass
-        elif prev_key == "D":
-            board[(x, y)] = UP_LEFT_CHAR
-
-
-    elif curr_key == "D":
-        curr_pos[X] += 1
-        if prev_key is None:
-            board[(x, y)] = LEFT_RIGHT_CHAR
-            print(f"x: {x}")
-        elif prev_key == "W":
-            board[(x, y)] = DOWN_RIGHT_CHAR
-        elif prev_key == "D":
-            board[(x, y)] = LEFT_RIGHT_CHAR
-            print(f"x: {x}")
-        elif prev_key == "A":
-            pass
-        elif prev_key == "S":
-            board[(x, y)] = UP_RIGHT_CHAR
+            elif prev_key == "S":
+                pass
+            elif prev_key == "D":
+                board[(x, y)] = UP_LEFT_CHAR
 
 
-    elif curr_key == "A":
-        curr_pos[X] -= 1
-        if prev_key is None:
-            board[(x, y)] = LEFT_RIGHT_CHAR
-        elif prev_key == "W":
-            board[(x, y)] = DOWN_LEFT_CHAR
-        elif prev_key == "A":
-            board[(x, y)] = LEFT_RIGHT_CHAR
-        elif prev_key == "S":
-            board[(x, y)] = UP_LEFT_CHAR
-        elif prev_key == "D":
-            pass
+        elif curr_key == "D":
+            curr_pos[X] += 1
+            if prev_key is None:
+                board[(x, y)] = LEFT_RIGHT_CHAR
+                print(f"x: {x}")
+            elif prev_key == "W":
+                board[(x, y)] = DOWN_RIGHT_CHAR
+            elif prev_key == "D":
+                board[(x, y)] = LEFT_RIGHT_CHAR
+                print(f"x: {x}")
+            elif prev_key == "A":
+                pass
+            elif prev_key == "S":
+                board[(x, y)] = UP_RIGHT_CHAR
 
-    elif curr_key == "S":
-        curr_pos[Y] +=1
-        if prev_key is None:
-            board[(x, y)] = UP_DOWN_CHAR
-        elif prev_key == "S":
-            board[(x, y)] = UP_DOWN_CHAR
-        elif prev_key == "A":
-            board[(x, y)] = UP_RIGHT_CHAR
-        elif prev_key == "W":
-            pass
-        elif prev_key == "D":
-            board[(x, y)] = DOWN_LEFT_CHAR
-    
+
+        elif curr_key == "A":
+            curr_pos[X] -= 1
+            if prev_key is None:
+                board[(x, y)] = LEFT_RIGHT_CHAR
+            elif prev_key == "W":
+                board[(x, y)] = DOWN_LEFT_CHAR
+            elif prev_key == "A":
+                board[(x, y)] = LEFT_RIGHT_CHAR
+            elif prev_key == "S":
+                board[(x, y)] = UP_LEFT_CHAR
+            elif prev_key == "D":
+                pass
+
+        elif curr_key == "S":
+            curr_pos[Y] +=1
+            if prev_key is None:
+                board[(x, y)] = UP_DOWN_CHAR
+            elif prev_key == "S":
+                board[(x, y)] = UP_DOWN_CHAR
+            elif prev_key == "A":
+                board[(x, y)] = DOWN_RIGHT_CHAR
+            elif prev_key == "W":
+                pass
+            elif prev_key == "D":
+                board[(x, y)] = DOWN_LEFT_CHAR
+
+    else:
+        if curr_key == "W":
+            curr_pos[Y] -= 1
+        elif curr_key == "D":
+            curr_pos[X] += 1
+        elif curr_key == "A":
+            curr_pos[X] -= 1
+        elif curr_key == "S":
+            curr_pos[Y] +=1
+
+
+
 
 
 
@@ -207,3 +220,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Program Ended")
         sys.exit()
+
+        # you need to check if the value at the given position as well and if there is already a value at that position and if
+        # it is upside down then add cross hair there
