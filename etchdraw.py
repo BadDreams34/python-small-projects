@@ -220,3 +220,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Program Ended")
         sys.exit()
+
+        # you need to check if the value at the given position as well and if there is already a value at that position and if
+        # it is upside down then add cross hair there
